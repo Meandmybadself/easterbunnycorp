@@ -15,7 +15,7 @@ export default function HomePage() {
         style={{
           backgroundImage: "url('/bg.webp')",
           backgroundSize: "cover",
-          backgroundPosition: "center bottom",
+          backgroundPosition: "75% 50%",
         }}
       >
         <div className="absolute inset-0 bg-ink/40" />
