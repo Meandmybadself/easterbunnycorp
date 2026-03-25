@@ -1,65 +1,114 @@
-import Image from "next/image";
+import Link from "next/link";
+import PageShell from "@/components/ui/PageShell";
+import Button from "@/components/ui/Button";
+import { thisYearEaster, formatEasterDate } from "@/lib/easter";
 
-export default function Home() {
+export default function HomePage() {
+  const easterDate = thisYearEaster();
+  const formattedDate = formatEasterDate(easterDate);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <PageShell>
+      {/* Hero */}
+      <section className="border-b-2 border-ink bg-yellow-light">
+        <div className="max-w-5xl mx-auto px-4 py-12 sm:py-16">
+          <div className="max-w-2xl">
+            <div className="text-[10px] font-bold tracking-[0.3em] text-muted mb-4">
+              OFFICIAL NOTICE — VISITOR REGISTRATION OPEN
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6">
+              Register Your Family for the{" "}
+              <span className="text-ink">{easterDate.getUTCFullYear()}</span>{" "}
+              Easter Visit.
+            </h1>
+            <p className="text-sm text-muted mb-8 max-w-lg leading-relaxed">
+              Families must be pre-registered to receive an official visit from the
+              Easter Bunny. All registration information is kept strictly confidential
+              and stored only on this device.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/register">
+                <Button size="lg">REGISTER YOUR FAMILY</Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button size="lg" variant="secondary">VIEW MY FILE</Button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Visit date banner */}
+      <section className="border-b border-border bg-cream-dark">
+        <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-muted">
+            {easterDate.getUTCFullYear()} VISIT DATE
+          </span>
+          <div className="h-4 w-px bg-border hidden sm:block sm:mx-4" />
+          <span className="text-sm font-bold">{formattedDate}</span>
+          <div className="flex-1" />
+          <Link href="/tracker" className="text-[10px] font-bold tracking-[0.15em] underline underline-offset-2">
+            BUNNY TRACKER →
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Steps */}
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px border border-border bg-border">
+          <div className="bg-cream p-6">
+            <div className="text-3xl mb-4" aria-hidden>🥚</div>
+            <div className="text-[10px] font-bold tracking-[0.2em] text-muted mb-2">STEP 01</div>
+            <h2 className="font-bold text-base mb-2">Register Your Family</h2>
+            <p className="text-[12px] text-muted leading-relaxed">
+              Provide your address, family members, and ages. Registration is
+              required for all households seeking an official visit.
+            </p>
+          </div>
+          <div className="bg-pink-light p-6">
+            <div className="text-3xl mb-4" aria-hidden>📋</div>
+            <div className="text-[10px] font-bold tracking-[0.2em] text-muted mb-2">STEP 02</div>
+            <h2 className="font-bold text-base mb-2">Await Confirmation</h2>
+            <p className="text-[12px] text-muted leading-relaxed">
+              Your registration will be reviewed. Visit scheduling and status
+              updates will appear in your family dashboard.
+            </p>
+          </div>
+          <div className="bg-lavender-light p-6">
+            <div className="text-3xl mb-4" aria-hidden>🐰</div>
+            <div className="text-[10px] font-bold tracking-[0.2em] text-muted mb-2">STEP 03</div>
+            <h2 className="font-bold text-base mb-2">Track the Visit</h2>
+            <p className="text-[12px] text-muted leading-relaxed">
+              On Easter morning, monitor the live Bunny Tracker to follow
+              the official route and estimate arrival at your location.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Notice */}
+      <section className="max-w-5xl mx-auto px-4 pb-12">
+        <div className="border border-border p-6 bg-mint-light">
+          <div className="flex gap-4 items-start">
+            <div className="text-2xl flex-shrink-0" aria-hidden>📌</div>
+            <div>
+              <div className="text-[10px] font-bold tracking-[0.2em] text-muted mb-1">
+                IMPORTANT NOTICE
+              </div>
+              <p className="text-[12px] leading-relaxed text-ink">
+                All data collected during registration is stored exclusively on this
+                device using browser local storage. No personal information is
+                transmitted to, or stored on, any external server. For complaints
+                or missed appearances, please use the{" "}
+                <Link href="/contact" className="font-bold underline underline-offset-2">
+                  Contact Form
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageShell>
   );
 }
