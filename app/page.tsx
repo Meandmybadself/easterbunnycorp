@@ -10,8 +10,16 @@ export default function HomePage() {
   return (
     <PageShell>
       {/* Hero */}
-      <section className="border-b-2 border-ink bg-yellow-light">
-        <div className="max-w-5xl mx-auto px-4 py-12 sm:py-16">
+      <section
+        className="border-b-2 border-ink bg-yellow-light relative"
+        style={{
+          backgroundImage: "url('/bg.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center bottom",
+        }}
+      >
+        <div className="absolute inset-0 bg-yellow-light/85" />
+        <div className="relative max-w-5xl mx-auto px-4 py-12 sm:py-16">
           <div className="max-w-2xl">
             <div className="text-[10px] font-bold tracking-[0.3em] text-muted mb-4">
               OFFICIAL NOTICE — VISITOR REGISTRATION OPEN
