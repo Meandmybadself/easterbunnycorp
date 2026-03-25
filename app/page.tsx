@@ -18,18 +18,18 @@ export default function HomePage() {
           backgroundPosition: "center bottom",
         }}
       >
-        <div className="absolute inset-0 bg-yellow-light/85" />
+        <div className="absolute inset-0 bg-ink/40" />
         <div className="relative max-w-5xl mx-auto px-4 py-12 sm:py-16">
           <div className="max-w-2xl">
-            <div className="text-[10px] font-bold tracking-[0.3em] text-muted mb-4">
+            <div className="text-[10px] font-bold tracking-[0.3em] text-white/70 mb-4">
               OFFICIAL NOTICE — VISITOR REGISTRATION OPEN
             </div>
-            <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6 text-white">
               Register Your Family for the{" "}
-              <span className="text-ink">{easterDate.getUTCFullYear()}</span>{" "}
+              <span className="text-white">{easterDate.getUTCFullYear()}</span>{" "}
               Easter Visit.
             </h1>
-            <p className="text-sm text-muted mb-8 max-w-lg leading-relaxed">
+            <p className="text-sm text-white/75 mb-8 max-w-lg leading-relaxed">
               Families must be pre-registered to receive an official visit from the
               Easter Bunny. All registration information is kept strictly confidential
               and stored only on this device.
