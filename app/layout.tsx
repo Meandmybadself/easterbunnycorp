@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Easter Bunny Corp. — Official Registry",
   description:
     "Official visitor registration and administrative portal for Easter Bunny Corporation. Established 4 B.C.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
