@@ -16,6 +16,7 @@ import {
   setBunnyPin,
   generateId,
 } from "@/lib/storage";
+import { encodeState, buildShareUrl } from "@/lib/share";
 import type { FamilyRegistration, ContactMessage } from "@/lib/types";
 
 const VISIT_STATUS_OPTIONS: { value: FamilyRegistration["visitStatus"]; label: string }[] = [
@@ -46,6 +47,23 @@ export default function AdministrationDashboardPage() {
   // Reply state: messageId → draft text
   const [replies, setReplies] = useState<Record<string, string>>({});
   const [replySaved, setReplySaved] = useState<Record<string, boolean>>({});
+
+  // Share link
+  const [shareUrl, setShareUrl] = useState("");
+  const [shareCopied, setShareCopied] = useState(false);
+
+  const generateShareUrl = () => {
+    const encoded = encodeState(family, messages);
+    setShareUrl(buildShareUrl(encoded));
+    setShareCopied(false);
+  };
+
+  const copyShareUrl = () => {
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 3000);
+    });
+  };
 
   // PIN change
   const [newPin, setNewPin] = useState("");
@@ -262,6 +280,36 @@ export default function AdministrationDashboardPage() {
             </div>
           </section>
         )}
+
+        {/* Share state */}
+        <section className="space-y-5">
+          <SectionLabel>SHARE STATE</SectionLabel>
+          <div className="border border-border p-6 bg-cream space-y-4">
+            <p className="text-[12px] text-muted leading-relaxed">
+              Generate a link that encodes the current family file and messages.
+              Anyone who opens the link can restore this state to their device.
+              Family photos are not included.
+            </p>
+            <Button onClick={generateShareUrl} variant="secondary">
+              GENERATE SHARE LINK
+            </Button>
+            {shareUrl && (
+              <div className="space-y-3">
+                <div className="border border-border bg-cream-dark p-3 break-all text-[11px] font-mono text-muted select-all">
+                  {shareUrl}
+                </div>
+                <div className="flex items-center gap-3">
+                  <Button onClick={copyShareUrl} size="sm">
+                    {shareCopied ? "✓ COPIED" : "COPY TO CLIPBOARD"}
+                  </Button>
+                  <span className="text-[10px] text-muted tracking-wide">
+                    Link expires when state changes — regenerate to refresh.
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
 
         {/* PIN change */}
         <section className="space-y-5">
