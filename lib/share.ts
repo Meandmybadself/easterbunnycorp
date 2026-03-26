@@ -20,7 +20,7 @@ export function encodeState(
     messages,
   };
 
-  return btoa(encodeURIComponent(JSON.stringify(payload)));
+  return btoa(encodeURIComponent(JSON.stringify(payload))).replace(/\s/g, "");
 }
 
 export function decodeState(encoded: string): SharedState | null {
